@@ -22,7 +22,9 @@ NSString * const SVProgressHUDDidAppearNotification = @"SVProgressHUDDidAppearNo
 
 NSString * const SVProgressHUDStatusUserInfoKey = @"SVProgressHUDStatusUserInfoKey";
 
-#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
+#define __KL_STYLE_IOS7 false
+
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000 && __KL_STYLE_IOS7
 CGFloat SVProgressHUDRingRadius = 14;
 CGFloat SVProgressHUDRingThickness = 1;
 #else
@@ -726,7 +728,7 @@ CGFloat SVProgressHUDRingThickness = 6;
 
 - (UIView *)hudView {
     if(!hudView) {
-#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000 && __KL_STYLE_IOS7
         hudView = [[UIToolbar alloc] initWithFrame:CGRectZero];
         ((UIToolbar *)hudView).translucent = YES;
         ((UIToolbar *)hudView).barTintColor = self.hudBackgroundColor;
@@ -768,7 +770,7 @@ CGFloat SVProgressHUDRingThickness = 6;
 		stringLabel.textColor = self.hudForegroundColor;
 		stringLabel.font = self.hudFont;
         
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < 70000
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < 70000 || !__KL_STYLE_IOS7
 		stringLabel.shadowColor = self.hudStatusShadowColor;
 		stringLabel.shadowOffset = CGSizeMake(0, -1);
 #endif
@@ -839,7 +841,7 @@ CGFloat SVProgressHUDRingThickness = 6;
     }
 #endif
     
-#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000 && __KL_STYLE_IOS7
     return [UIColor whiteColor];
 #else
     return [UIColor colorWithWhite:0 alpha:0.8];
@@ -857,7 +859,7 @@ CGFloat SVProgressHUDRingThickness = 6;
     }
 #endif
     
-#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000 && __KL_STYLE_IOS7
     return [UIColor colorWithWhite:0 alpha:0.8];
 #else
     return [UIColor whiteColor];
@@ -875,7 +877,7 @@ CGFloat SVProgressHUDRingThickness = 6;
     }
 #endif
     
-#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000 && __KL_STYLE_IOS7
     return [UIColor whiteColor];
 #else
     return [UIColor colorWithWhite:0 alpha:0.8];
@@ -893,7 +895,7 @@ CGFloat SVProgressHUDRingThickness = 6;
     }
 #endif
     
-#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000 && __KL_STYLE_IOS7
     return self.tintColor;
 #else
     return [UIColor whiteColor];
@@ -911,7 +913,7 @@ CGFloat SVProgressHUDRingThickness = 6;
     }
 #endif
  
-#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000 && __KL_STYLE_IOS7
     return [UIColor colorWithWhite:200.0f/255.0f alpha:0.8];
 #else
     return [UIColor blackColor];
@@ -929,7 +931,7 @@ CGFloat SVProgressHUDRingThickness = 6;
     }
 #endif
     
-#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000 && __KL_STYLE_IOS7
     return [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
 #else
     return [UIFont boldSystemFontOfSize:16];
@@ -947,7 +949,7 @@ CGFloat SVProgressHUDRingThickness = 6;
     }
 #endif
 
-#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000 && __KL_STYLE_IOS7
     return [UIImage imageNamed:@"SVProgressHUD.bundle/success-black"];
 #else
     return [UIImage imageNamed:@"SVProgressHUD.bundle/success.png"];
@@ -965,7 +967,7 @@ CGFloat SVProgressHUDRingThickness = 6;
     }
 #endif
     
-#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000 && __KL_STYLE_IOS7
     return [UIImage imageNamed:@"SVProgressHUD.bundle/error-black"];
 #else
     return [UIImage imageNamed:@"SVProgressHUD.bundle/error.png"];
