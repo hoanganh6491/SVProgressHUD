@@ -446,17 +446,30 @@ CGFloat SVProgressHUDRingThickness = 6;
 #pragma mark - Master show/dismiss methods
 
 - (void)showProgress:(float)progress status:(NSString*)string maskType:(SVProgressHUDMaskType)hudMaskType {
-    
+  
     if(!self.overlayView.superview){
-        NSEnumerator *frontToBackWindows = [[[UIApplication sharedApplication]windows]reverseObjectEnumerator];
-        
-        for (UIWindow *window in frontToBackWindows)
-            if (window.windowLevel == UIWindowLevelNormal) {
-                [window addSubview:self.overlayView];
-                break;
-            }
+      
+      NSArray* windows = [[UIApplication sharedApplication] windows];
+          
+      BOOL isStatusWindow = NO;
+      for (UIWindow *window in [windows reverseObjectEnumerator]) {
+        if (window.windowLevel == UIWindowLevelStatusBar) {
+          [window addSubview:self.overlayView];
+          isStatusWindow = YES;
+          break;
+        }
+      }
+      
+      if (!isStatusWindow) {
+        for (UIWindow *window in [windows reverseObjectEnumerator]) {
+          if (window.windowLevel == UIWindowLevelNormal) {
+            [window addSubview:self.overlayView];
+            break;
+          }
+        }
+      }
     }
-    
+  
     if(!self.superview)
         [self.overlayView addSubview:self];
     
